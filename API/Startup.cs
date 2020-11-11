@@ -34,23 +34,12 @@ namespace API
 
             services.AddApplicationServices();    
             services.AddSwaggerDocumentation();
-
-            services.Configure<ApiBehaviorOptions>(options =>
+            services.AddCors(opt =>
             {
-                options.InvalidModelStateResponseFactory = actionContext =>
+                opt.AddPolicy("CorsPolicy", policy =>
                 {
-                    var errors = actionContext.ModelState
-                        .Where(e => e.Value.Errors.Count > 0)
-                        .SelectMany(x => x.Value.Errors)
-                        .Select(x => x.ErrorMessage).ToArray();
-
-                    var errorResponse = new ApiValidationErrorResponse
-                    {
-                        Errors = errors
-                    };
-
-                    return new BadRequestObjectResult(errorResponse);    
-                };
+                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200");
+                });
             });
         }
 
@@ -64,6 +53,8 @@ namespace API
 
             app.UseRouting();
             app.UseStaticFiles();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 
