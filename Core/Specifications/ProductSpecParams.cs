@@ -8,7 +8,7 @@ namespace Core.Specifications
         public int PageSize
         {
             get => _pageSize;
-            set => PageSize = (value > MaxPageSize) ? MaxPageSize : value;
+            set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
         }
 
         public int? BrandId { get; set; }
