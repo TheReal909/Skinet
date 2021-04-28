@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { BasketComponent } from './basket.component';
+import { CheckoutComponent } from './checkout.component';
 
 const routes: Routes = [
-  {path: '', component: BasketComponent}
+  {path: '', component: CheckoutComponent}
 ]
 
 @NgModule({
@@ -16,4 +15,4 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class BasketRoutingModule { }
+export class CheckoutRoutingModule { }
