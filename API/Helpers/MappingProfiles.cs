@@ -15,6 +15,8 @@ namespace API.Helpers
                 .ForMember(d => d.PictureUrl, o => o.MapFrom<ProductUrlResolver>());
 
             CreateMap<Address, AddressToReturnDto>().ReverseMap(); //reverse map permet de renverser pour destination a source , surtout pour update
+            CreateMap<CustomerBasketDto, CustomerBasket>();
+            CreateMap<BasketItemsDto, BasketItems>();
 
         }
     }
